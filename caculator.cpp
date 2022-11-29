@@ -5,42 +5,42 @@ using namespace std;
 #define p 3.14159265
 #define INT_MAX 2147483647
 
-
 int integer_part(int n)
 {
-	int start=0,end=n-1;
+    int start = 0, end = n - 1;
     int mid;
-	while(start<=end)
-	{
-		 mid=((end-start)/2)+start;
-		if(mid*mid==n ) return mid;
-		else if(mid*mid>n ) end=mid-1;
-		else start=mid+1;
-	}
-	return mid-1;
-}
-double more_pre(int n,int pre,int integer_part)
-{
-    double factor=1;
-    double ans=integer_part;
-    for(int i=0;i<pre;i++)
+    while (start <= end)
     {
-        factor=factor/10;
-        for(double j=ans;j*j<n;j=j+factor)
+        mid = ((end - start) / 2) + start;
+        if (mid * mid == n)
+            return mid;
+        else if (mid * mid > n)
+            end = mid - 1;
+        else
+            start = mid + 1;
+    }
+    return mid - 1;
+}
+double more_pre(int n, int pre, int integer_part)
+{
+    double factor = 1;
+    double ans = integer_part;
+    for (int i = 0; i < pre; i++)
+    {
+        factor = factor / 10;
+        for (double j = ans; j * j < n; j = j + factor)
         {
             ans = j;
         }
     }
-    return ans ;
+    return ans;
 }
 
 double root(int n)
 {
-    int int_part=integer_part(n);
-    return more_pre(n,5,int_part);
-
+    int int_part = integer_part(n);
+    return more_pre(n, 5, int_part);
 }
-
 
 double pow(double a, int b)
 {
@@ -157,6 +157,13 @@ double sec(double a)
 // square root
 // complex number
 
+void instructions()
+{
+    cout << "\n";
+    cout << "TRIGONOMETRY : sin S cos C cot c tan T sec s cosec t \n";
+    cout << "p (pi) = 3.14159265\n";
+    cout << "OPERATORS : + (ADDITION) , - (SUBTRACTION) , * (MULTIPLICATION), / (DIVISION) AND ^ (POWER) \n";
+}
 int preference(char a)
 {
     if (a == '+')
@@ -328,20 +335,30 @@ double expression_eval(string s)
     return ans;
 }
 
-int expression()
+void expression()
 {
-    system("cls");
-    string s;
-    cout << "enter the expression : ";
-    getline(cin, s);
-    s = to_pre(s);
-    if (expression_eval(s) == INT_MAX)
+    int a = 1;
+    while (a)
     {
-        cout << "ANSWER : " << char(236);
-    }
-    else
-    {
-        cout << "ANSWER : " << expression_eval(s);
+        system("cls");
+        string s;
+        instructions();
+        cout << "\nenter the expression : ";
+        fflush(stdin);
+        getline(cin, s);
+        fflush(stdin);
+        s = to_pre(s);
+        double d = expression_eval(s);
+        if (d == INT_MAX)
+        {
+            cout << "ANSWER : " << char(236) << "\n";
+        }
+        else
+        {
+            cout << "ANSWER : " << d << "\n";
+        }
+        cout << "\nENTER 1 TO CONTINUE 0 TO EXIT : ";
+        cin >> a;
     }
 }
 
@@ -693,42 +710,41 @@ void matrices()
 void one_degree()
 {
     system("cls");
-    double a,b;
+    double a, b;
 
-    cout<<"\nSTANDARD 1 DEGREE EQUATION  IS AX+B=0  ";
-    cout<<"\nENTER THE VALUE OF A AND B : ";
-    cin>>a>>b;
-    if(a==0)
+    cout << "\nSTANDARD 1 DEGREE EQUATION  IS AX+B=0  ";
+    cout << "\nENTER THE VALUE OF A AND B : ";
+    cin >> a >> b;
+    if (a == 0)
     {
-        cout<<"SYNTAX ERROR .";
-        return ;
+        cout << "SYNTAX ERROR .";
+        return;
     }
-    cout<<"\nTHE VALUE OF X IS : "<<-((double(b))/a);
-
+    cout << "\nTHE VALUE OF X IS : " << -((double(b)) / a);
 }
 void two_degree()
 {
     system("cls");
-    double a,b,c;
-    cout<<"\nSTANDARD 2 DEGREE EQUATION  IS AX"<<char(253)<<"+BX+C=0 ";
-    cout<<"\nENTER THE VALUE OF A ,B AND C : ";
-    cin>>a>>b>>c;
-    if(a==0 && b==0)
+    double a, b, c;
+    cout << "\nSTANDARD 2 DEGREE EQUATION  IS AX" << char(253) << "+BX+C=0 ";
+    cout << "\nENTER THE VALUE OF A ,B AND C : ";
+    cin >> a >> b >> c;
+    if (a == 0 && b == 0)
     {
-        cout<<"SYNTAX ERROR .";
+        cout << "SYNTAX ERROR .";
     }
-    else if(a==0)
+    else if (a == 0)
     {
-        cout<<"\nTHE VALUE OF X IS : "<<-((double(c))/b);
+        cout << "\nTHE VALUE OF X IS : " << -((double(c)) / b);
     }
-    else if((b*b)-(4*a*c)<0)
+    else if ((b * b) - (4 * a * c) < 0)
     {
-        double d=-((b*b)-(4*a*c));
-        cout<<"\nTHE VALUE OF X ARE : "<<-(b/(2*a))<<"+"<<(root(d)/(2*a))<<"i AND "<<-(b/(2*a))<<"-"<<(root(d)/(2*a))<<"i .";
+        double d = -((b * b) - (4 * a * c));
+        cout << "\nTHE VALUE OF X ARE : " << -(b / (2 * a)) << "+" << (root(d) / (2 * a)) << "i AND " << -(b / (2 * a)) << "-" << (root(d) / (2 * a)) << "i .";
     }
     else
     {
-        cout<<"\nTHE VALUE OF X ARE : "<<double(-b - root((b*b)-(4*a*c)))/(2*a)<<" AND "<<double(-b + root((b*b)-(4*a*c)))/(2*a);
+        cout << "\nTHE VALUE OF X ARE : " << double(-b - root((b * b) - (4 * a * c))) / (2 * a) << " AND " << double(-b + root((b * b) - (4 * a * c))) / (2 * a);
     }
 }
 
@@ -748,87 +764,225 @@ void equation()
             two_degree();
             break;
         case 0:
-            return ;
+            return;
         }
     }
 }
 
 ///
-void complex_number()
-{
-}
-
 
 //
-void graph()
+void plot()
 {
-    int n=21;
-    int a, b;
-    cout<<"Y = X ^A+B";
-    cin>>a>>b;
+    system("cls");
+    int n = 21;
+    int a, d, b, e;
+    cout << "GRAPH is of the form Y = E(D*X)^A + B ";
+    cout << "\nENTER THE VALUE OF E,D,A AND B : ";
+    cin >> e >> d >> a >> b;
+    cout << "GRAPH : \n";
     char mat[n][n];
-    for(int i=0;i<n;i++)
+    for (int i = 0; i < n; i++)
     {
-        for(int j=0;j<n;j++)
+        for (int j = 0; j < n; j++)
         {
-            if(i==(n/2) && j==(n/2))
+            if (i == (n / 2) && j == (n / 2))
             {
-                mat[i][j]='+';
+                mat[i][j] = '+';
             }
-            else if(i==(n/2))
+            else if (i == (n / 2))
             {
-                mat[i][j]='-';
-
+                mat[i][j] = '-';
             }
-            else if(j==(n/2))
+            else if (j == (n / 2))
             {
-                mat[i][j]='|';
+                mat[i][j] = '|';
             }
-            else mat[i][j]=' ';
-
+            else
+                mat[i][j] = ' ';
         }
-
     }
 
-    for(int i=1;i<n/2;i++)
+    for (int i = 1; i < n / 2; i++)
     {
-        int x = n/2-i;
-        int y = pow(-i,a) + b;
-        //cout<<-i<<" "<<y<<endl;
-        if(abs(y)<n/2)
+        int x = n / 2 - i;
+        int y = e * (pow(-i * d, a)) + b;
+        if (abs(y) < n / 2)
         {
-            if(y<0)
+            if (y < 0)
             {
-                mat[x][y+n/2]='*';
+                mat[(n / 2) + (-y)][x] = '*';
             }
-            else if(y>0)
+            else if (y > 0)
             {
-                cout<<x<<" "<<y<<endl;
-                mat[x][y]='*';
+                // cout<<x<<" "<<y<<endl;
+                mat[n / 2 - y][x] = '*';
             }
         }
-
     }
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            cout<<mat[i][j];
 
+    for (int i = 1; i < n / 2; i++)
+    {
+        int x = n / 2 + i;
+        int y = e * (pow(i * d, a)) + b;
+        // cout<<-i<<" "<<y<<endl;
+        if (abs(y) < n / 2)
+        {
+            if (y < 0)
+            {
+                mat[-y + n / 2][x] = '*';
+            }
+            else if (y > 0)
+            {
+                mat[n / 2 - y][x] = '*';
+            }
         }
-        cout<<endl;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << mat[i][j];
+        }
+        cout << endl;
     }
 }
+void graph()
+{
+    int a = 1;
+    while (a)
+    {
+        cout << "ENTER 1 TO PLOT GRAPH : ELSE ENTER 0 ";
+        cin >> a;
+        if (a)
+        {
+            plot();
+        }
+    }
+}
+
+class complex
+{
+public:
+    double a;
+    double b;
+    complex operator+(complex t)
+    {
+        complex x;
+        x.a = this->a + t.a;
+        x.b = this->b + t.b;
+        return x;
+    }
+    complex operator-(complex t)
+    {
+        complex x;
+        x.a = this->a - t.a;
+        x.b = this->b - t.b;
+        return x;
+    }
+    complex operator*(complex t)
+    {
+        complex x;
+        x.a = (this->a * t.a) - (this->b * t.b);
+        x.b = (this->a * t.b) + (this->b * t.a);
+        return x;
+    }
+    complex operator/(complex t)
+    {
+        complex x;
+        int d = (t.a * t.a) + (t.b * t.b);
+        x.a = ((double)((this->a * t.a) + (this->b * t.b))) / d;
+        x.b = ((double)((this->b * t.a) - (this->a * t.b))) / d;
+        return x;
+    }
+    void print()
+    {
+        cout << endl
+             << "ANSWER : " << this->a << "+" << this->b << "i " << endl;
+    }
+};
+
+void complex_number()
+{
+    system("cls");
+    int c = 1;
+    while (c)
+    {
+        cout << "ENTER O TO EXIT\nENTER 1 TO ADD TWO COMPLEX NUMBER\nENTER 2 TO SUBTRACT TWO COMPLEX NUMBER\nENTER 3 FOR MULTIPLY TWO COMPLEX NUMBER\nENTER 4 TO DIVIDE TWO COMPLEX NUMBER\nENTER YOUR CHOICE : ";
+        cin >> c;
+        if (c == 0)
+        {
+            break;
+        }
+        double a, b;
+        complex x1, x2;
+        cout << "enter the complex number x1 = a+ib : ";
+        cin >> a >> b;
+        x1.a = a;
+        x1.b = b;
+        cout << "enter the complex number x2 = a+ib : ";
+        cin >> a >> b;
+        x2.a = a;
+        x2.b = b;
+        complex res;
+        switch (c)
+        {
+        case 1:
+            res = x1 + x2;
+            res.print();
+            break;
+        case 2:
+            res = x1 - x2;
+            res.print();
+            break;
+        case 3:
+            res = x1 * x2;
+            res.print();
+            break;
+        case 4:
+            res = x1 / x2;
+            res.print();
+            break;
+        }
+    }
+}
+
+void scientific_caculator()
+{
+    int a = 1;
+    while (a)
+    {
+        system("cls");
+        cout << "\nSCIENTIFIC CALCULATOR\n";
+        cout << "ENTER 0 TO EXIT\nENTER 1 FOR EQUATION\nENTER 2 FOR EXPRESSION\nENTER 3 FOR MATICES\nENTER 4 FOR GRAPH\nENTER 5 FOR COMPLEX NUMBER\n";
+        cin >> a;
+        switch (a)
+        {
+        case 0:
+            break;
+        case 1:
+            equation();
+            break;
+        case 2:
+            expression();
+            break;
+        case 3:
+            matrices();
+            break;
+        case 4:
+            graph();
+            break;
+        case 5:
+            complex_number();
+            break;
+        default:
+            cout << "\nINVALID CHOICE.\n";
+        }
+    }
+}
+
 int main()
 {
-    // cout << " \nsin S cos C cot c tan T sec s cosec t\n";
-    // expression();
-    //     // cout<<sin(3.14159265);
-    //     // cout<<endl;
-    // cout<< tan(p/2);
-    // matrices();
-
-  // equation();
-  graph();
-
+    scientific_caculator();
 }
